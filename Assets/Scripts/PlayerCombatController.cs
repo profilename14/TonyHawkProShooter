@@ -11,6 +11,7 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private GameObject waveSpellPrefab;
     [SerializeField] private float waveSpellCooldown = 0.12f;
     [SerializeField] private Rigidbody playerRigidbody;
+    [SerializeField] private GameObject hiddenMessage;
     private float curCharge = 0.2f;
     private float maxCharge = 0.8f;
     private bool isCharging;
@@ -62,6 +63,10 @@ public class PlayerCombatController : MonoBehaviour
         if (maxScore >= 249) { // 50, 100, 150 stages, after which the game enters freeplay (500 point cycles with no time limit)
             gameWon = true;
             maxScore = 500;
+        }
+
+        if (maxScore > 149) {
+            hiddenMessage.SetActive(true);
         }
 
         if (gameWon == false) {
